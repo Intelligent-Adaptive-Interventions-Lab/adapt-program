@@ -14,7 +14,7 @@ const ThemeDropdown = ({ handleThemeChange, theme }) => {
         key: themeId,
       }))}
       value={theme}
-      styles={customStyles}
+      // styles={customStyles}
       onChange={handleThemeChange}
     />
   );

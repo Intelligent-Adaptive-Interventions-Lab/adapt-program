@@ -16,38 +16,10 @@ import OutputDetails from "./OutputDetails";
 import ThemeDropdown from "./ThemeDropdown";
 import LanguagesDropdown from "./LanguagesDropdown";
 
-const javascriptDefault = `/**
-* Problem: Binary Search: Search a sorted array for a target value.
-*/
-
-// Time: O(log n)
-const binarySearch = (arr, target) => {
- return binarySearchHelper(arr, target, 0, arr.length - 1);
-};
-
-const binarySearchHelper = (arr, target, start, end) => {
- if (start > end) {
-   return false;
- }
- let mid = Math.floor((start + end) / 2);
- if (arr[mid] === target) {
-   return mid;
- }
- if (arr[mid] < target) {
-   return binarySearchHelper(arr, target, mid + 1, end);
- }
- if (arr[mid] > target) {
-   return binarySearchHelper(arr, target, start, mid - 1);
- }
-};
-
-const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-const target = 5;
-console.log(binarySearch(arr, target));
-`;
+const pythonDefault = `print("Hello world!")`;
 
 const Landing = () => {
-  const [code, setCode] = useState(javascriptDefault);
+  const [code, setCode] = useState(pythonDefault);
   const [customInput, setCustomInput] = useState("");
   const [outputDetails, setOutputDetails] = useState(null);
   const [processing, setProcessing] = useState(null);
@@ -115,11 +87,7 @@ const Landing = () => {
         console.log("status", status);
         if (status === 429) {
           console.log("too many requests", status);
-
-          showErrorToast(
-            `Quota of 100 requests exceeded for the Day! Please read the blog on freeCodeCamp to learn how to setup your own RAPID API Judge0!`,
-            10000
-          );
+          document.getElementById('msgCompileSuccessOrFail').innerHTML = `Quota of 100 requests exceeded for the Day! Please read the blog on freeCodeCamp to learn how to setup your own RAPID API Judge0!`;
         }
         setProcessing(false);
         console.log("catch block...", error);
@@ -150,14 +118,14 @@ const Landing = () => {
       } else {
         setProcessing(false);
         setOutputDetails(response.data);
-        showSuccessToast(`Compiled Successfully!`);
+        document.getElementById('msgCompileSuccessOrFail').innerHTML = `Compiled Successfully!`
         console.log("response.data", response.data);
         return;
       }
     } catch (err) {
       console.log("err", err);
       setProcessing(false);
-      showErrorToast();
+      document.getElementById('msgCompileSuccessOrFail').innerHTML = `Compiling Failed!`;
     }
   };
 
@@ -172,96 +140,57 @@ const Landing = () => {
     }
   }
   useEffect(() => {
-    defineTheme("oceanic-next").then((_) =>
-      setTheme({ value: "oceanic-next", label: "Oceanic Next" })
+    defineTheme("cobalt").then((_) =>
+      setTheme({ value: "cobalt", label: "Cobalt" })
     );
   }, []);
 
-  const showSuccessToast = (msg) => {
-    toast.success(msg || `Compiled Successfully!`, {
-      position: "top-right",
-      autoClose: 1000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
-  };
-  const showErrorToast = (msg, timer) => {
-    toast.error(msg || `Something went wrong! Please try again.`, {
-      position: "top-right",
-      autoClose: timer ? timer : 1000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
-  };
-
   return (
     <>
-      <ToastContainer
-        position="top-right"
-        autoClose={2000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
-
-      <div className="grid grid-cols-2">
-        <div className="bg-gray-200 p-4">
-          <p>Please write code to print "Hello world!"</p>
-        </div>
-        <div className="bg-gray-300 p-4">
-          {/*language and theme drop-downs:*/}
-          <div className="flex flex-row">
-            <div className="px-4 py-2">
-              <LanguagesDropdown onSelectChange={onSelectChange} />
-            </div>
-            <div className="px-4 py-2">
-              <ThemeDropdown handleThemeChange={handleThemeChange} theme={theme} />
-            </div>
-          </div>
-
-          {/*Code editor:*/}
-          <div className="flex flex-col w-full justify-start items-end">
-            <CodeEditorWindow
-              code={code}
-              onChange={onChange}
-              language={language?.value}
-              theme={theme.value}
-            />
-          </div>
-
-          {/*Outputs, custom inputs and :*/}
-          <div className="flex w-full flex-col">
-            <button
-              onClick={handleCompile}
-              disabled={!code}
-              className={classnames(
-                "mt-4 border-2 border-black z-10 rounded-md shadow-[5px_5px_0px_0px_rgba(0,0,0)] px-4 py-2 hover:shadow transition duration-200 bg-white flex-shrink-0",
-                !code ? "opacity-50" : ""
-              )}
-            >
-              {processing ? "Processing..." : "Compile and Execute"}
-            </button>
-            <OutputWindow outputDetails={outputDetails} />
-            <div className="flex flex-col items-end">
-              <CustomInput
-                customInput={customInput}
-                setCustomInput={setCustomInput}
-              />
-            </div>
-            {outputDetails && <OutputDetails outputDetails={outputDetails} />}
-          </div>
+      {/*language and theme drop-downs:*/}
+      <div class="container-lg">
+        <div class="d-flex py-3">
+          <div><LanguagesDropdown onSelectChange={onSelectChange} /></div>
+          <div class="ps-2"><ThemeDropdown handleThemeChange={handleThemeChange} theme={theme} /></div>
         </div>
       </div>
+
+      {/*Code editor:*/}
+      <div class="container">
+        <CodeEditorWindow
+          code={code}
+          onChange={onChange}
+          language={language?.value}
+          theme={theme.value}
+        />
+      </div>
+
+      {/*Outputs, custom inputs and :*/}
+      <div class="m-1 p-2 d-flex">
+        <button
+          onClick={handleCompile}
+          disabled={!code}
+          class="mt-4 border border-gray p-2 fw-bold bg-white flex-shrink-0"
+        >
+          {processing ? "Processing..." : "Run"}
+        </button>
+        <div class="container align-self-center">
+          <p id="msgCompileSuccessOrFail" class="text-light duration-200"></p>
+        </div>
+      </div>
+      <div class="container">
+        <CustomInput
+            customInput={customInput}
+            setCustomInput={setCustomInput}
+          />
+      </div>
+      <div class="container">
+        <OutputWindow outputDetails={outputDetails} />
+      </div>
+      <div class="container">
+        {outputDetails && <OutputDetails outputDetails={outputDetails} />}
+      </div>
+
 
       {/*<Footer />*/}
     </>
