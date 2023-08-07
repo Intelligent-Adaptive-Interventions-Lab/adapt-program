@@ -1,0 +1,39 @@
+{
+  "test_cases": [
+    {
+      "input": {
+        "name1": "Jen",
+        "name2": "Paul"
+      },
+      "expected_output": "Jen"
+    },
+    {
+      "input": {
+        "name1": "Colin",
+        "name2": "Colin"
+      },
+      "expected_output": "Colin"
+    },
+    {
+      "input": {
+        "name1": "John",
+        "name2": "Jane"
+      },
+      "expected_output": "Jane"
+    },
+    {
+      "input": {
+        "name1": "Alice",
+        "name2": "Bob"
+      },
+      "expected_output": "Alice"
+    },
+    {
+      "input": {
+        "name1": "Zara",
+        "name2": "Abby"
+      },
+      "expected_output": "Abby"
+    }
+  ]
+}
