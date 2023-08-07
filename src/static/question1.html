@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>earlier_name Python Function</title>
+</head>
+
+<body>
+    <h1>Python Function: earlier_name</h1>
+    <p>
+        The <code>earlier_name</code> function takes two string parameters, <code>name1</code> and <code>name2</code>,
+        and returns the name that comes first alphabetically.
+    </p>
+
+    <h2>Parameters:</h2>
+    <ul>
+        <li><code>name1</code> (str): The first name.</li>
+        <li><code>name2</code> (str): The second name.</li>
+    </ul>
+
+    <h2>Returns:</h2>
+    <p>
+        <code>str</code>: The name that comes first alphabetically.
+    </p>
+
+    <h2>Examples:</h2>
+    <pre><code>
+        earlier_name('Jen', 'Paul')
+        # Output: 'Jen'
+
+        earlier_name('Colin', 'Colin')
+        # Output: 'Colin'
+    </code></pre>
+
+    <h2>Function Implementation:</h2>
+    <pre><code>
+        def earlier_name(name1: str, name2: str) -&gt; str:
+            if name1 &lt; name2:
+                return name1
+            else:
+                return name2
+    </code></pre>
+
+</body>
+
+</html>
