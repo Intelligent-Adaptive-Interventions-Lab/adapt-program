@@ -1,0 +1,32 @@
+.app {    
+    width: 50%; /* Set the width to 80% of the screen size */  
+    max-width: 50%; /* Ensure the width never exceeds 80% */  
+    min-width: 50%; /* Ensure the width never goes below 80% */
+    margin: 0 auto; /* Center the app window horizontally */  
+    padding: 2%; /* Add some padding around the content for better appearance */  
+    border-radius: 10px;
+  }    
+
+  body {  
+    font-family: "Times New Roman", Times, serif;  
+  }  
+    
+  /* Media Queries */  
+  @media (min-width: 576px) {  
+    .app {  
+      width: 85%; /* Adjust the width for small devices (e.g., tablets) */  
+    }  
+  }  
+    
+  @media (min-width: 768px) {  
+    .app {  
+      width: 70%; /* Adjust the width for medium devices (e.g., small laptops) */  
+    }  
+  }  
+    
+  @media (min-width: 992px) {  
+    .app {  
+      width: 45%; /* Adjust the width for large devices (e.g., desktops) */  
+    }  
+  }  
+  

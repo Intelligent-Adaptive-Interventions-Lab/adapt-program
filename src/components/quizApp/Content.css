@@ -1,0 +1,30 @@
+/* Content.css */  
+.content-container {  
+    display: flex;  
+    flex-direction: row;  
+    flex-wrap: nowrap;  
+    justify-content: space-between;  
+    width: 100%;  
+  }  
+    
+  .question-container,  
+  .answer-container {  
+    flex-grow: 1;  
+    flex-basis: 0;  
+  }  
+    
+  .question-container {  
+    margin-right: 1rem;  
+  }  
+    
+  @media (max-width: 768px) {  
+    .content-container {  
+      flex-direction: column;  
+    }  
+    
+    .question-container {  
+      margin-right: 0;  
+      margin-bottom: 1rem;  
+    }  
+  }  
+  
