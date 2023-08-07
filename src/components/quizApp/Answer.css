@@ -1,0 +1,61 @@
+.answer-container {  
+  padding: 1rem;  
+  margin: 1rem;  
+  flex-grow: 1;  
+  /* min-height: 50px;   */
+  max-height: calc(100vh - 40px);  
+}
+
+  .bottom-box {  
+    overflow-y: auto;  
+    max-height: calc(100vh - 140px); /* Adjust this value based on the height of the top-box and other elements */  
+    border: 2px solid #ccc;  
+    padding: 1rem; 
+  }
+    
+.answer-text {    
+    font-size: 1.1rem;    
+  }    
+    
+.no-answer-text {    
+    font-size: 1rem;    
+    color: #999;    
+  }
+
+  @keyframes fadeIn {  
+    0% {  
+      opacity: 0;  
+    }  
+    100% {  
+      opacity: 1;  
+    }  
+  }  
+    
+  .fade-in {  
+    animation: fadeIn 1s ease-in-out;  
+  }  
+  
+    
+  /* Media Queries */  
+@media (max-width: 768px) {  
+    .answer-container {  
+      padding: 0.8rem;  
+      margin: 0.8rem;  
+    }  
+    
+    .answer-text {  
+      font-size: 1rem;  
+    }  
+  }  
+    
+@media (max-width: 576px) {  
+    .answer-container {  
+      padding: 0.6rem;  
+      margin: 0.6rem;  
+    }  
+    
+    .answer-text {  
+      font-size: 0.9rem;  
+    }  
+  }  
+  

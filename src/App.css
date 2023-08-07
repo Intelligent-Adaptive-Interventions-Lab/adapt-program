@@ -1,38 +1,32 @@
-.App {
-  text-align: center;
-}
+.app {    
+    width: 100%; /* Set the width to 80% of the screen size */  
+    max-width: 100%; /* Ensure the width never exceeds 80% */  
+    min-width: 50%; /* Ensure the width never goes below 80% */
+    margin: 0 auto; /* Center the app window horizontally */  
+    padding: 2%; /* Add some padding around the content for better appearance */  
+    border-radius: 10px;
+  }    
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+  body {  
+    font-family: "Times New Roman", Times, serif;  
+  }  
+    
+  /* Media Queries */  
+  @media (min-width: 576px) {  
+    .app {  
+      width: 85%; /* Adjust the width for small devices (e.g., tablets) */  
+    }  
+  }  
+    
+  @media (min-width: 768px) {  
+    .app {  
+      width: 70%; /* Adjust the width for medium devices (e.g., small laptops) */  
+    }  
+  }  
+    
+  @media (min-width: 992px) {  
+    .app {  
+      width: 45%; /* Adjust the width for large devices (e.g., desktops) */  
+    }  
+  }  
+  

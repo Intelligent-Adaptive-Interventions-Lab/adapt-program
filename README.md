@@ -12,4 +12,6 @@ Instructions:
    Can get the API key by the tutorial https://www.freecodecamp.org/news/how-to-build-react-based-code-editor/ in section _How to Compile the Code with Judge0_.
 4. Use command:\
 `npm install`\
+   If any packages cannot be resolved, please install them using separate commands: `npm insall <package name>`.
+5. Use command:\
 `npm start`

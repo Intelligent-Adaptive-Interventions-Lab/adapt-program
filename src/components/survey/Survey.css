@@ -1,0 +1,54 @@
+.survey-container {  
+    display: flex;  
+    flex-direction: column;  
+    align-items: left;  
+    margin-top: 20px;  
+    min-width: 100%;
+    width: 60%; /* Added this line to increase the survey window width */  
+    max-width: 800px; /* Added this line to set a maximum width */  
+    margin-left: auto; /* Added these two lines to center the survey */  
+    margin-right: auto;   
+  }  
+    
+  .survey-container h2 {  
+    margin-bottom: 20px;  
+  }  
+    
+  .survey-container div {  
+    margin-bottom: 20px;  
+  }  
+    
+  .survey-container p {  
+    font-size: 1.2em;  
+    font-weight: bold;  
+    margin-bottom: 10px;  
+  }  
+    
+  .survey-container label {  
+    display: block;  
+    margin-bottom: 5px;  
+  }  
+    
+  .survey-container input[type='radio'] {  
+    margin-right: 10px;  
+  }  
+    
+  .survey-container textarea {  
+    width: 100%;  
+    resize: vertical; /* Allows the user to resize the textarea vertically */
+    color: black;
+  }
+  
+  .survey-container button {  
+    background-color: #007bff;  
+    color: white;  
+    padding: 10px 20px;  
+    border: none;  
+    cursor: pointer;  
+    margin-top: 10px;  
+  }  
+    
+  .survey-container button:hover {  
+    background-color: darkblue;  
+  }  
+  
