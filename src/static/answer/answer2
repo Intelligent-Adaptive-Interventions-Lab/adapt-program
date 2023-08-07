@@ -1,0 +1,24 @@
+{
+  "test_cases": [
+    {
+      "input": 68,
+      "expected_output": 4.75
+    },
+    {
+      "input": 10,
+      "expected_output": 4.25
+    },
+    {
+      "input": 25,
+      "expected_output": 7.5
+    },
+    {
+      "input": 5,
+      "expected_output": 4.25
+    },
+    {
+      "input": 70,
+      "expected_output": 4.75
+    }
+  ]
+}
