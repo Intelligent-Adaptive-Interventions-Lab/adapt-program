@@ -564,9 +564,42 @@ const Quiz = ({ questions, onShowAnswerClick, setShowAnswerComponent, setAnswerD
 									</div>
 								</div>
 
+
+							</div>
+						)}
+					</div>
+					<div className='pt-2'>
+						<CodeEditorWindow
+							code={code}
+							onChange={onChange}
+							language={language?.value}
+							theme={theme.value}
+						/>
+						</div>
+
+
+					<div className='pt-2'>
+
+						<ul className="nav nav-tabs" id="myTab" role="tablist">
+							<li className="nav-item" role="presentation">
+								<button className="nav-link active rounded-bottom-0 fw-bold" id="results-tab" data-bs-toggle="tab" data-bs-target="#results" type="button" role="tab" aria-controls="results" aria-selected="true">Results</button>
+							</li>
+							<li className="nav-item me-auto" role="presentation">
+								<button className="nav-link rounded-bottom-0 fw-bold" id="testcases-tab" data-bs-toggle="tab" data-bs-target="#testcases" type="button" role="tab" aria-controls="testcases" aria-selected="false">Test cases</button>
+							</li>
+							<li className="nav-item" role="process">
+								<button
+									onClick={handleCompile}
+									disabled={!code}
+									class="btn btn-light border fw-bold"
+								>
+									{processing ? "Processing..." : "Run"}
+								</button>
+							</li>
+							<li className="nav-item ps-2" role="submit">
 								{!showNextButton && !submitted && !readingTime && (    
 									<div className='submit-ask-ai'>    
-										<button className='submit-button' onClick={handleSubmitButtonClick} disabled={submitDisabled}>Submit</button>    
+										<button className='btn btn-primary border fw-bold' onClick={handleSubmitButtonClick} disabled={submitDisabled}>Submit</button>    
 									</div>     
 									)}   
 
@@ -597,60 +630,22 @@ const Quiz = ({ questions, onShowAnswerClick, setShowAnswerComponent, setAnswerD
 									)}  
 								</>  
 								)}
-							</div>
-						)}
-					</div>
-					<div className='pt-2'>
-						<CodeEditorWindow
-							code={code}
-							onChange={onChange}
-							language={language?.value}
-							theme={theme.value}
-						/>
-						</div>
-					<div className='p-0'>
-						<button
-							onClick={handleCompile}
-							disabled={!code}
-							class="mt-4 btn btn-light border border-gray p-2 fw-bold bg-white flex-shrink-0"
-						>
-						{processing ? "Processing..." : "Run"}
-						</button>
-					</div>
-
-					<div className='pt-2'>
-						<ul class="nav nav-tabs flex-column flex-sm-row">
-							<li class="nav-item">
-								<button 
-									class="nav-link rounded-bottom-0 text-white"
-									onClick={() => {
-										showOutputResults(true);
-										showTestCases(false)
-									}}
-								>
-									Results
-								</button>
-							</li>
-							<li class="nav-item">
-								<button 
-									class="nav-link rounded-bottom-0 text-white"
-									onClick={() => {
-										showOutputResults(false);
-										showTestCases(true)
-									}}
-								>
-									Test cases
-								</button>
 							</li>
 						</ul>
+
+						<div className="tab-content">
+							<div className="tab-pane active" id="results" role="tabpanel" aria-labelledby="results-tab" tabindex="0">
+								<OutputWindow outputDetails={outputDetails} />
+							</div>
+							<div className="tab-pane" id="testcases" role="tabpanel" aria-labelledby="testcases-tab" tabindex="0">
+								<div className='card p-0 m-0 col-12 border border-top-0 border-white bg-black rounded-top-0'>
+									<br /><br />
+								</div>
+							</div>
+						</div>
 						
 					</div>
 
-					{outputResults && <OutputWindow outputDetails={outputDetails} />}
-					{testCases && 
-					<div className='container p-0 m-0 col-12 border border-top-0 border-white bg-black rounded-bottom-2'>
-						<br /><br /><br /><br />
-					</div>}
 					
 				</div>
 				</div>

@@ -1,4 +1,5 @@
 import React from "react";
+import './OutputWindow.css';
 
 const OutputWindow = ({ outputDetails }) => {
   const getOutput = () => {
@@ -13,7 +14,7 @@ const OutputWindow = ({ outputDetails }) => {
       );
     } else if (statusId === 3) {
       return (
-        <pre class="px-2 py-1 text-success">
+        <pre className="p-2 text-success">
           {atob(outputDetails.stdout) !== null
             ? `${atob(outputDetails.stdout)}`
             : null}
@@ -38,9 +39,10 @@ const OutputWindow = ({ outputDetails }) => {
       {/* <div class="py-2 fw-bold text-light">
         <h4>Result:</h4>
       </div> */}
-      <div class="card p-0 m-0 col-12 border border-top-0 border-white bg-black rounded-top-0">
+      <div id="output" class="overflow-auto p-0 m-0 col-12 border border-top-0 border-white bg-black rounded-top-0">
         {outputDetails ? <>{getOutput()}</> : <><br /><br /><br /></>}
       </div>
+
     </>
   );
 };
