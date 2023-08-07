@@ -39,7 +39,7 @@ const OutputWindow = ({ outputDetails }) => {
       {/* <div class="py-2 fw-bold text-light">
         <h4>Result:</h4>
       </div> */}
-      <div id="output" class="overflow-auto p-0 m-0 col-12 border border-top-0 border-white bg-black rounded-top-0">
+      <div id="output" class="overflow-auto p-0 m-0 col-12 border border-top-0 border-white bg-black rounded-bottom-2">
         {outputDetails ? <>{getOutput()}</> : <><br /><br /><br /></>}
       </div>
 

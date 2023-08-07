@@ -211,7 +211,7 @@ export default function App() {
 			{currentPage === "quiz" && (  
 			  <>  
 				{preview && <Control />}  
-				<div className="container-fluid p-0 m-0" ref={contentContainerRef}>  
+				<div className="container-fluid px-2 py-2 m-0" ref={contentContainerRef}>  
 				  <Quiz  
 					questions={questions}  
 					onShowAnswerClick={setAnswer}  

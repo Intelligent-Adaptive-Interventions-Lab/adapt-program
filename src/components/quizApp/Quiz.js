@@ -533,7 +533,7 @@ const Quiz = ({ questions, onShowAnswerClick, setShowAnswerComponent, setAnswerD
 						) : (
 							<div className='container p-0' ref={quizContainerRef}>
 								<div className='container p-0'>
-									<div className='container my-1 p-0'>
+									<div className='container m-0 p-0'>
 										<span>Question {currentQuestion+1}</span>/{questions.length}
 									</div>
 										<div className="container p-0">  
