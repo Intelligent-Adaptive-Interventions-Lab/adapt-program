@@ -1,0 +1,43 @@
+.control-panel {  
+    display: flex;  
+    flex-direction: column;  
+    align-items: flex-start;  
+    gap: 10px;  
+  }  
+    
+.control-panel .dropdowns {  
+    display: flex;  
+    flex-direction: column;  
+    gap: 10px;  
+  }
+
+.control-panel select {  
+    color: black;  
+  }  
+    
+.control-panel select option {  
+    color: black;  
+  }  
+  
+    
+.control-panel .customized-llm {  
+    display: flex;  
+    flex-direction: column;  
+    gap: 10px;  
+  }  
+    
+.control-panel label {  
+    display: block;  
+    margin-bottom: 5px;  
+  }  
+    
+.control-panel input[type='checkbox'] {  
+    margin-top: 5px;  
+  } 
+
+.control-panel textarea {  
+    width: 100%;  
+    resize: vertical; /* Allows the user to resize the textarea vertically */  
+    min-height: 100px; /* Sets the minimum height for the textarea */  
+  }  
+  
