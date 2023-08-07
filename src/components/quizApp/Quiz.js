@@ -3,7 +3,7 @@ import SettingsContext from './SettingsContext';
 import './Quiz.css';
 import { useMturkDataState } from '../mturk/MturkDataState';
 import PageVisibility from "react-page-visibility";
-import SnakeGame from 'react-snake-game';
+// import SnakeGame from 'react-snake-game';
 
 import CodeEditorWindow from '../codeEditorCompiler/CodeEditorWindow';
 import { languageOptions } from "../../constants/languageOptions";
@@ -60,6 +60,10 @@ const Quiz = ({ questions, onShowAnswerClick, setShowAnswerComponent, setAnswerD
 	// states for compilation of code in the code editor
 	const [processing, setProcessing] = useState(null);
 	const [outputDetails, setOutputDetails] = useState(null);
+
+	// states for results and test cases
+	const [outputResults, showOutputResults] = useState(true)
+	const [testCases, showTestCases] = useState(false)
 
 	const WRAPPER_STYLE = {
 		margin : '30px auto',
@@ -270,10 +274,10 @@ const Quiz = ({ questions, onShowAnswerClick, setShowAnswerComponent, setAnswerD
 	};  
 	 
 	const handleSubmitButtonClick = () => {  
-		if (selected === null) {  
-		setShowWarning(true);
-		return;  
-		}  
+		// if (selected === null) {  
+		// setShowWarning(true); // TODO: remember to change this
+		// return;  
+		// }  
 		setShowWarning(false);  
 		setSubmitted(true);  
 		setNextButtonDisabled(true); // Disable the next button  
@@ -499,7 +503,6 @@ const Quiz = ({ questions, onShowAnswerClick, setShowAnswerComponent, setAnswerD
 					<div className="tetris-container" style={WRAPPER_STYLE}>
 						<h4>To give yourself a break before moving on to the test problems, you have 1 minute to play Snake.</h4>
 						<h3>Remaining time : {countdown} seconds</h3>  
-						<SnakeGame onGameOver={() => setShowTestButton(true)} />  
 					</div>  
 				)}  
 				{showTestButton && (  
@@ -519,136 +522,152 @@ const Quiz = ({ questions, onShowAnswerClick, setShowAnswerComponent, setAnswerD
     return (
 		<PageVisibility onChange={handleVisibilityChange}>
 		{/* <div className='app'> */}
-		<div>
-			{/* HINT: replace "false" with logic to display the 
-      score when the user has answered all the questions */}
-			{false ? (
-				<div className='score-section'>You scored 1 out of {questions.length}</div>
-			) : (
-				<div className='quiz-container' ref={quizContainerRef}>
-					<div className='question-section'>
-						<div className='question-count'>
-							<span>Question {currentQuestion+1}</span>/{questions.length}
-						</div>
-							<div className="reading-prompt">  
-							{readingTime && (  
-							<>  
-							<div>Please start by reading the question.</div>  
-							<div  
-								className="progress-bar-container"  
-								style={{  
-								visibility: readingTime ? "visible" : "hidden",  
-								}}  
-							>  
-								<div  
-								className="progress-bar"  
-								style={{  
-									width: `${progressPercentage}%`,  
-									height: "5px",  
-									background: "blue",  
-								}}  
-								></div>  
-							</div>  
-							</>  
-						)}  
-						</div>
-						<div className='question-text'>{questions[currentQuestion].questionText}</div>
-					</div>
-					<div className='answer-section'>
-						
-							{questions[currentQuestion].answerOptions.map((answerOption, index) => {
-							const buttonClassName =  
-							quizPhase === "train"  
-								? submitted  
-									? isAnswerCorrect(index)  
-										? "correct"  
-										: selected === index  
-										? "incorrect"  
-										: ""  
-									: selected === index  
-									? "selected"  
-									: ""  
-								: selected === index  
-								? "selected"  
-								: "";  
-			
-					  return (  
-						<button  
-						  key={index}  
-						  onClick={() => handleAnswerButtonClick(index)}  
-						  className={buttonClassName}
-                        //   disabled={quizPhase === "train" && settings.showSolutionFirst === 'Yes' && !showAnswerClicked}   
-						>  
-						  <span dangerouslySetInnerHTML={{ __html: answerOption.answerText }}></span>  
-						</button>  
-					  );  
-					})}
-					
-					</div>
-					{!showNextButton && !submitted && !readingTime && (    
-						<div className='submit-ask-ai'>    
-							<button className='submit-button' onClick={handleSubmitButtonClick} disabled={submitDisabled}>Submit</button>    
-						</div>     
-						)}   
 
-					{showWarning && (  
-                        <div className="warning-message">  
-                            {readingTime  
-								? "Please finish reading the question."  
-								: "Please select your answer before submitting."}  
-                        </div>  
-                    )} 
-					{submitted && (  
-					<>  
-						{showNextButton ? (  
-						<button  
-							className='next-button'  
-							onClick={handleNextButtonClick}
-							disabled={submitDisabled}  
-						>  
-							Next Question  
-						</button>  
-						) : (  
-							<div className='progress-bar-container'>  
-							<div  
-							  className='progress-bar'  
-							  style={{ width: `${progress}%`, height: '5px', background: 'green' }}  
-							></div>  
-						  </div>   
-						)}  
-					</>  
-					)}
-					<div className="rough-work">  
-						<textarea 
-							placeholder="Space for scratch work..."
-							value={roughWork}
-							onChange={(e) => setRoughWork(e.target.value)}></textarea>  
-					</div>      
-					<CodeEditorWindow
-						code={code}
-						onChange={onChange}
-						language={language?.value}
-						theme={theme.value}
-					/>
-					<button
-						onClick={handleCompile}
-						disabled={!code}
-						class="mt-4 btn btn-light border border-gray p-2 fw-bold bg-white flex-shrink-0"
-					>
+			<div className='row p-0'>
+				<div className='col-6'>		
+				<div className='d-flex flex-column'>		
+					<div className='p-0'>
+						{/* HINT: replace "false" with logic to display the  score when the user has answered all the questions */}
+						{false ? (
+							<div className='container p-0'>You scored 1 out of {questions.length}</div>
+						) : (
+							<div className='container p-0' ref={quizContainerRef}>
+								<div className='container p-0'>
+									<div className='container my-1 p-0'>
+										<span>Question {currentQuestion+1}</span>/{questions.length}
+									</div>
+										<div className="container p-0">  
+										{readingTime && (  
+										<>  
+										<div>Please start by reading the question.</div>  
+										<div  
+											className="container bg-white p-0"  
+											style={{  
+											visibility: readingTime ? "visible" : "hidden", 
+											height: "10px"
+											}}  
+										>  
+											<div  
+											className="progress-bar"  
+											style={{  
+												width: `${progressPercentage}%`,  
+												height: "5px",  
+												background: "blue",  
+											}}  
+											></div>  
+										</div>  
+										</>  
+									)}  
+									</div>
+									<div className='container my-1 p-0'>
+										<p>Complete the following functions:</p>
+									</div>
+								</div>
+
+								{!showNextButton && !submitted && !readingTime && (    
+									<div className='submit-ask-ai'>    
+										<button className='submit-button' onClick={handleSubmitButtonClick} disabled={submitDisabled}>Submit</button>    
+									</div>     
+									)}   
+
+								{showWarning && (  
+									<div className="warning-message">  
+										{readingTime  
+											? "Please finish reading the question."  
+											: "Please select your answer before submitting."}  
+									</div>  
+								)} 
+								{submitted && (  
+								<>  
+									{showNextButton ? (  
+									<button  
+										className='next-button'  
+										onClick={handleNextButtonClick}
+										disabled={submitDisabled}  
+									>  
+										Next Question  
+									</button>  
+									) : (  
+										<div className='progress-bar-container'>  
+										<div  
+										className='progress-bar'  
+										style={{ width: `${progress}%`, height: '5px', background: 'green' }}  
+										></div>  
+									</div>   
+									)}  
+								</>  
+								)}
+							</div>
+						)}
+					</div>
+					<div className='pt-2'>
+						<CodeEditorWindow
+							code={code}
+							onChange={onChange}
+							language={language?.value}
+							theme={theme.value}
+						/>
+						</div>
+					<div className='p-0'>
+						<button
+							onClick={handleCompile}
+							disabled={!code}
+							class="mt-4 btn btn-light border border-gray p-2 fw-bold bg-white flex-shrink-0"
+						>
 						{processing ? "Processing..." : "Run"}
-					</button>
-					<CustomInput
-						customInput={customInput}
-						setCustomInput={setCustomInput}
-					/>
-					<OutputWindow outputDetails={outputDetails} />
-					{outputDetails && <OutputDetails outputDetails={outputDetails} />}
+						</button>
+					</div>
+
+					<div className='pt-2'>
+						<ul class="nav nav-tabs flex-column flex-sm-row">
+							<li class="nav-item">
+								<button 
+									class="nav-link rounded-bottom-0 text-white"
+									onClick={() => {
+										showOutputResults(true);
+										showTestCases(false)
+									}}
+								>
+									Results
+								</button>
+							</li>
+							<li class="nav-item">
+								<button 
+									class="nav-link rounded-bottom-0 text-white"
+									onClick={() => {
+										showOutputResults(false);
+										showTestCases(true)
+									}}
+								>
+									Test cases
+								</button>
+							</li>
+						</ul>
+						
+					</div>
+
+					{outputResults && <OutputWindow outputDetails={outputDetails} />}
+					{testCases && 
+					<div className='container p-0 m-0 col-12 border border-top-0 border-white bg-black rounded-bottom-2'>
+						<br /><br /><br /><br />
+					</div>}
+					
 				</div>
-			)}
-		</div>
+				</div>
+				
+				<div className='col-6'>   
+					<div className='container text-white'>
+						Area for solution
+					</div>
+				</div>
+			</div>
+
 	</PageVisibility>
 		);
     }  
 };
 
 export default Quiz;
+
+
+

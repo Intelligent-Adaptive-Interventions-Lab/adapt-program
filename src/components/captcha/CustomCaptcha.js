@@ -58,19 +58,21 @@ const CustomCaptcha = ({ onCaptchaSuccess }) => {
   }, [captchaMessage]);  
   
   return (  
-    <div className="custom-captcha">  
-      <h2>Input the code that appears in the box below:</h2>  
-      <canvas ref={canvasRef} height="75" width="100" />  
-      <div>  
-        <input  
-          type="text"  
-          value={inputCaptcha}  
-          onChange={(e) => setInputCaptcha(e.target.value)}  
-        />  
+    <div className='container position-absolute top-50 start-50 translate-middle'>
+      <div className="custom-captcha">  
+        <h2>Input the code that appears in the box below:</h2>  
+        <canvas ref={canvasRef} height="75" width="100" />  
+        <div>  
+          <input  
+            type="text"  
+            value={inputCaptcha}  
+            onChange={(e) => setInputCaptcha(e.target.value)}  
+          />  
+        </div>  
+        <button onClick={handleSubmit}>Submit</button>
+        <Footer />  
       </div>  
-      <button onClick={handleSubmit}>Submit</button>
-      <Footer />  
-    </div>  
+    </div>
   );  
 };  
   

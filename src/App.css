@@ -1,6 +1,6 @@
 .app {    
-    width: 50%; /* Set the width to 80% of the screen size */  
-    max-width: 50%; /* Ensure the width never exceeds 80% */  
+    width: 100%; /* Set the width to 80% of the screen size */  
+    max-width: 100%; /* Ensure the width never exceeds 80% */  
     min-width: 50%; /* Ensure the width never goes below 80% */
     margin: 0 auto; /* Center the app window horizontally */  
     padding: 2%; /* Add some padding around the content for better appearance */  

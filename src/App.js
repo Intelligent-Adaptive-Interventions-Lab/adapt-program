@@ -211,7 +211,7 @@ export default function App() {
 			{currentPage === "quiz" && (  
 			  <>  
 				{preview && <Control />}  
-				<div className="content-container" ref={contentContainerRef} style={{display:"flex", justifyContent: "flex-start"}}>  
+				<div className="container-fluid p-0 m-0" ref={contentContainerRef}>  
 				  <Quiz  
 					questions={questions}  
 					onShowAnswerClick={setAnswer}  
@@ -230,7 +230,7 @@ export default function App() {
 					setTopBoxMessage={setTopBoxMessage}
 					submitDisabled={submitDisabled}  
 				  />  
-				  <Answer  
+				  {/* <Answer  
 					answer={answer}  
 					showAnswerComponent={showAnswerComponent}  
 					vanillaLLM={answerData.vanillaLLM}
@@ -244,7 +244,7 @@ export default function App() {
 					submitted={quizSubmitted}
 					currentQuestion={currentQuestion}
 					topBoxMessage={topBoxMessage}  
-				  />  
+				  />   */}
 				</div>  
 			  </>  
 			)}  

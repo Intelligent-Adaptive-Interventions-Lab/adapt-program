@@ -35,11 +35,11 @@ const OutputWindow = ({ outputDetails }) => {
   };
   return (
     <>
-      <div class="py-2 fw-bold text-light">
-        <h4>Output:</h4>
-      </div>
-      <div class="box col-12 border border-white bg-black text-white">
-        {outputDetails ? <>{getOutput()}</> : null}
+      {/* <div class="py-2 fw-bold text-light">
+        <h4>Result:</h4>
+      </div> */}
+      <div class="card p-0 m-0 col-12 border border-top-0 border-white bg-black rounded-top-0">
+        {outputDetails ? <>{getOutput()}</> : <><br /><br /><br /></>}
       </div>
     </>
   );
